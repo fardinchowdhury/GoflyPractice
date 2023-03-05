@@ -3,14 +3,18 @@
     padding: 0;
     box-sizing: border-box;
 }
+body {
+    background-color: #afa6e2;
+}
 
 .container {
     display: flex;
     height: 500px;
     width: 800px;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     margin: auto;
     margin-top: 50px;
+    box-shadow: 15px 15px 20px black;
 }
 
 .form {
@@ -39,8 +43,8 @@
 
 #submit {
     padding: 12px 30px;
-    width: 40%;
-    margin-top: 40px;
+    width: 60%;
+    margin-top: 30px;
     background-color: rgb(124, 100, 231);
     color: white;
     font-weight: bold;
@@ -54,12 +58,29 @@
     background-color: blueviolet;
 
 }
+
+#p-login {
+    margin-top: 30px;
+}
 .form a{
     text-decoration: none;
     color: black;
-    margin-top: 10px;
 }
 
 .form a:hover{
     color: #5f49db;
+}
+
+
+.side {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    background-color: black;
+}
+
+.side img{
+    width: fit-content;
+    height: 498px;
 }
