@@ -15,6 +15,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
      $user = $_POST['uid'];
      $email = $_POST['email'];
      $password = $_POST['pwd'];
+     $FirstName = $_POST['fname'];
+     $LastName = $_POST['lname'];
+     $PhoneNumber = $_POST['num'];
  
      // Validate the user input (e.g. check for empty fields, validate email address, etc.)
      // ...
@@ -27,8 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Insert the new user data into the database
-    $sql = "INSERT INTO users (username, email, password)
-            VALUES ('$user', '$email', '$password')";
+    $sql = "INSERT INTO users (username, email, password, FirstName, LastName, PhoneNumber)
+            VALUES ('$user', '$email', '$password', '$FirstName', '$LastName', '$PhoneNumber')";
 
     if ($conn->query($sql) === TRUE) {
         // Redirect the user to the login page
