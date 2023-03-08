@@ -1,46 +1,60 @@
-<?php
-// Change this to your connection info.
-$DATABASE_HOST = "localhost";
-$DATABASE_USER = "user";
-$DATABASE_PASS = '';
-$DATABASE_NAME = 'user_account';
-// Try and connect using the info above.
-$con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
-if (mysqli_connect_errno()) {
-	// If there is an error with the connection, stop the script and display the error.
-	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="landing.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plaster&family=Poppins:wght@200&display=swap" rel="stylesheet">
+    <title>signup</title>
+</head>
+<body>
+<?php 
 
-//Checking is the account with that email exists.
-// We need to check if the account with that username exists.
-if ($stmt = $con->prepare('SELECT id, password FROM user WHERE email = ?')) {
-	// Bind parameters (s = string, i = int, b = blob, etc), hash the password using the PHP password_hash function.
-	$stmt->bind_param('s', $_POST['email']);
-	$stmt->execute();
-	$stmt->store_result();
-	// Store the result so we can check if the account exists in the database.
-	if ($stmt->num_rows > 0) {
-		// Username already exists
-		echo 'The email exists, please choose another!';
-	} 
-    
-    else {
-		// Email doesn't exists, insert new account
-if ($stmt = $con->prepare('INSERT INTO accounts (username, password, email) VALUES (?, ?, ?)')) {
-	// We do not want to expose passwords in our database, so hash the password and use password_verify when a user logs in.
-	$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-	$stmt->bind_param('sss', $_POST['username'], $password, $_POST['email']);
-	$stmt->execute();
-	echo 'You have successfully registered! You can now login!';
-} else {
-	// Something is wrong with the SQL statement, so you must check to make sure your accounts table exists with all 3 fields.
-	echo 'Could not prepare statement!';
+if(isset($_POST['submit'])){
+   $username = $_POST['username'];
+   $email = $_POST['email'];
+   $password = $_POST['password'];
+
+   echo $username + ' ' + $email + ' ' + $password;
 }
-	}
-	$stmt->close();
-} else {
-	// Something is wrong with the SQL statement, so you must check to make sure your accounts table exists with all 3 fields.
-	echo 'Could not prepare statement!';
-}
-$con->close();
 ?>
+    <nav>
+        <div class="logo">
+            <h4><a href="landing.html">Gofly</a></h4>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#">Reviews</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="signup.html">Register</a></li>
+            <li><a href="#">Contact Us</a></li>
+        </ul>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <form action="signup.php" method="POST" class="form">
+            <h2>Register</h2>
+            <input class="box" type="text" name="uid" placeholder="Username" id = 'username' name = 'username'required>
+            <input class="box" type="email" name="email" placeholder="Email" id = 'email' name = 'email' required>
+            <input class="box" type="password" name="pwd" placeholder="password" id = 'password' name = 'password' required>
+            <input type="submit" value="Sign Up" id="submit" name = 'submit'>
+            <p1 id="p-login">Already a member? <a href="login.html"><u>Login</u></a></p1>
+        </form>
+        <div class="side">
+            <img src="photos/bgpic1.png" alt="">
+        </div>
+    </div>
+
+    <script src="land.js"></script>
+    
+</body>
+</html>
