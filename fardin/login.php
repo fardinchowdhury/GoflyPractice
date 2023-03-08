@@ -1,5 +1,7 @@
 <?php
 // Establish database connection
+session_start();
+
 $servername = "oceanus.cse.buffalo.edu:3306";
 $user = "mamuin";
 $pass = "50424784";
@@ -28,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Login successful
         session_start();
         $_SESSION['username'] = $username;
-        header("Location: landing.html");
+        header("Location: landing.php");
         exit;
     } else {
         // Login failed

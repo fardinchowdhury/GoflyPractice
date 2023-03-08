@@ -1,3 +1,7 @@
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,14 +26,28 @@
             <li><a href="login.html">Login</a></li>
             <li><a href="signup.html">Register</a></li>
             <li><a href="#">Contact Us</a></li>
+            <li><a href="profile.php">My Profile</a></li>
+            <li><a href="logout.php">Logout</a></li>
+
         </ul>
         <div class="burger">
             <div class="line1"></div>
             <div class="line2"></div>
             <div class="line3"></div>
-            <h4>WELCOME USER</h4>
         </div>
     </nav>
+
+    <div> 
+        <?php
+        session_start();
+
+        if(isset($_SESSION["username"])) {
+            $username = $_SESSION['username'];
+            echo "<h1>Welcome, $username!</h1>";
+        }
+        
+        ?>
+    </div>
 
     
     <script src="land.js"></script>
