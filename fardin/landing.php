@@ -22,10 +22,8 @@
             <h4><a href="landing.html">Gofly</a></h4>
         </div>
         <ul class="nav-links">
-            <li><a href="#">Reviews</a></li>
             <li><a href="login.html">Login</a></li>
             <li><a href="signup.html">Register</a></li>
-            <li><a href="#">Contact Us</a></li>
             <li><a href="profile.php">My Profile</a></li>
             <li><a href="logout.php">Logout</a></li>
 
