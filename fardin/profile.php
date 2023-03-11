@@ -7,12 +7,12 @@ require_once('config.php');
     //    $username = "mamuin";
     //    $password = "50424784";
     //    $dbname = "mamuin_db";
-    //    $conn = mysqli_connect($servername, $username, $password, $dbname);
+    //    $db_connection = mysqli_connect($servername, $username, $password, $dbname);
        
        // Retrieve user data
        $username = $_SESSION['username'];
        $query = "SELECT * FROM users WHERE username = '$username'";
-       $result = mysqli_query($conn, $query);
+       $result = mysqli_query($db_connection, $query);
        $row = mysqli_fetch_assoc($result);
     
        ?>
@@ -66,6 +66,7 @@ require_once('config.php');
             <input class="box" type="tel" name="phone" value= <?php echo $row['PhoneNumber']; ?> required>
             
             <a class="fpwd" href="change_password.html"><u>Change Password</u></a>
+            <a class="fpwd" href="deleteAccount.html"><u>Delete Account</u></a>
 
             <input type="submit" value="Save" id="submit">
         </form>

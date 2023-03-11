@@ -33,8 +33,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // }
 
     // Insert the new user data into the database
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
     $sql = "INSERT INTO users (username, email, password, FirstName, LastName, PhoneNumber)
-            VALUES ('$user', '$email', '$password', '$FirstName', '$LastName', '$PhoneNumber')";
+            VALUES ('$user', '$email', '$hashed_password', '$FirstName', '$LastName', '$PhoneNumber')";
 
     if (mysqli_query($db_connection, $sql)) {
         // Redirect the user to the login page
