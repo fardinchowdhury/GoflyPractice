@@ -1,4 +1,6 @@
 <?php
+
+    require_once('config.php');
     // Start the session
     session_start();
     
@@ -19,34 +21,34 @@
         if ($new_password != $confirm_password) {
             $error = "New passwords do not match";
         } else {
-            // Connect to database
-            $servername = "oceanus.cse.buffalo.edu:3306";
-            $username = "mamuin";
-            $password = "50424784";
-            $dbname = "mamuin_db";
+            // // Connect to database
+            // $servername = "oceanus.cse.buffalo.edu:3306";
+            // $username = "mamuin";
+            // $password = "50424784";
+            // $dbname = "mamuin_db";
           
             
-            $conn = mysqli_connect($servername, $username, $password, $dbname);
+            // $conn = mysqli_connect($servername, $username, $password, $dbname);
             
-            // Check connection
-            if (!$conn) {
-                die("Connection failed: " . mysqli_connect_error());
-            }
+            // // Check connection
+            // if (!$conn) {
+            //     die("Connection failed: " . mysqli_connect_error());
+            // }
             
             // Update password in database
             $username = $_SESSION['username'];
             
             $sql = "UPDATE users SET password='$new_password' WHERE username='$username' AND password='$current_password'";
             
-            if (mysqli_query($conn, $sql)) {
+            if (mysqli_query($db_connection, $sql)) {
                 // Redirect the user to the login page
                  header("Location: successpw.html");
                  exit;
             } else {
-                $error = "Error updating password: " . mysqli_error($conn);
+                $error = "Error updating password: " . mysqli_error($db_connection);
             }
             
-            mysqli_close($conn);
+            mysqli_close($db_connection);
         }
     }
 ?>

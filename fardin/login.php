@@ -1,29 +1,30 @@
 <?php
+require_once('config.php');
 // Establish database connection
 session_start();
 
-$servername = "oceanus.cse.buffalo.edu:3306";
-$user = "mamuin";
-$pass = "50424784";
-$dbname = "mamuin_db";
+// $servername = "oceanus.cse.buffalo.edu:3306";
+// $user = "mamuin";
+// $pass = "50424784";
+// $dbname = "cse442_2023_spring_team_y_db";
 
-$conn = mysqli_connect($servername, $user, $pass, $dbname);
+// $conn = mysqli_connect($servername, $user, $pass, $dbname);
 
-// Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
+// // Check connection
+// if (!$conn) {
+//     die("Connection failed: " . mysqli_connect_error());
+// }
 
 // Check if the form has been submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
-    $username = mysqli_real_escape_string($conn, $_POST['uid']);
-    $password = mysqli_real_escape_string($conn, $_POST['pwd']);
+    $username = mysqli_real_escape_string($db_connection, $_POST['uid']);
+    $password = mysqli_real_escape_string($db_connection, $_POST['pwd']);
     
 
     // Query the database
     $sql = "SELECT * FROM users WHERE username='$username' AND password='$password'";
-    $result = mysqli_query($conn, $sql);
+    $result = mysqli_query($db_connection, $sql);
 
     // Check if the query returned any rows
     if (mysqli_num_rows($result) == 1) {
@@ -38,5 +39,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-mysqli_close($conn);
+mysqli_close($db_connection);
 ?>

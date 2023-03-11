@@ -1,12 +1,13 @@
 <?php
+require_once('config.php');
        session_start();
 
-       // Establish database connection
-       $servername = "oceanus.cse.buffalo.edu:3306";
-       $username = "mamuin";
-       $password = "50424784";
-       $dbname = "mamuin_db";
-       $conn = mysqli_connect($servername, $username, $password, $dbname);
+    //    // Establish database connection
+    //    $servername = "oceanus.cse.buffalo.edu:3306";
+    //    $username = "mamuin";
+    //    $password = "50424784";
+    //    $dbname = "mamuin_db";
+    //    $conn = mysqli_connect($servername, $username, $password, $dbname);
        
        // Retrieve user data
        $username = $_SESSION['username'];
