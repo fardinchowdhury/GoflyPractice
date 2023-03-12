@@ -20,7 +20,26 @@
         <ul class="nav-links">
             <li><a href="#">Reviews</a></li>
             <li><a href="#">Contact Us</a></li>
-            <li><a href="logout.php">Logout</a></li>
+            <li>
+                <div class="dropdown">
+                    <a href="#">
+                    <i class="fa-solid fa-user"></i>
+                    <?php
+                        session_start();
+
+                        if(isset($_SESSION["username"])) {
+                            $username = $_SESSION['username'];
+                            echo "$username";
+                        }
+                    ?>
+                    </a>
+                <!-- dropdown for the user -->
+                    <div class="dropdown-content">
+                        <a href="profile.php">My Profile</a>
+                        <a href="logout.php">Logout</a>
+                    </div>
+                </div>
+            </li>
             
         </ul>
         <div class="burger">
@@ -42,7 +61,7 @@
             <img src="photos/bgpic1.png" alt="">
         </div>
     </div>
-
+    <script src="https://kit.fontawesome.com/fe66f9ddbe.js" crossorigin="anonymous"></script>
     <script src="land.js"></script>
     
 </body>
