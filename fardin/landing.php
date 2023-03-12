@@ -19,8 +19,9 @@
             <h4><a href="landing.php">Gofly</a></h4>
         </div>
         <ul class="nav-links">
-            <li><a class="hover-underline-animation" href="#">Reviews</a></li>
-            <li><a class="hover-underline-animation" href="#">Contact Us</a></li>
+            
+            <li><a href="#">Reviews</a></li>
+            <li><a href="#">Contact Us</a></li>
             <li>
                 <div class="dropdown">
                     <a href="#">
