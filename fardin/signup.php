@@ -5,36 +5,26 @@ require_once('config.php');
 // Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-//   // Connect to the database (replace with your own database credentials)
-//     $servername = "oceanus.cse.buffalo.edu:3306";
-//     $username = "mamuin";
-//     $password = "50424784";
-//     $dbname = " cse442_2023_spring_team_y_db";
+     // Get the user input and sanitize the user inputs
+     $user = sanitize($_POST['uid']);
+     $email = sanitize($_POST['email']);
+     $password = sanitize($_POST['pwd']);
+     $FirstName = sanitize($_POST['fname']);
+     $LastName = sanitize($_POST['lname']);
+     $PhoneNumber = sanitize($_POST['num']);
 
-//     $conn = new mysqli($servername, $username, $password, $dbname);
-
-
-     // Get the user input
-     $user = $_POST['uid'];
-     $email = $_POST['email'];
-     $password = $_POST['pwd'];
-     $FirstName = $_POST['fname'];
-     $LastName = $_POST['lname'];
-     $PhoneNumber = $_POST['num'];
+    $user = sanitize_sql($user);
+    $email = sanitize_sql($email);
+    $password = sanitize_sql($password);
+    $FirstName = sanitize_sql($FirstName);
+    $LastName = sanitize_sql($LastName);
+    $PhoneNumber = sanitize_sql($PhoneNumber);
  
-     // Validate the user input (e.g. check for empty fields, validate email address, etc.)
-     // ...
- 
-    //  // Hash the password for security
-    //  $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    // if ($conn->connect_error) {
-    //     die("Connection failed: " . $conn->connect_error);
-    // }
 
+    $hashed_password = hash_password($password);
+    
     // Insert the new user data into the database
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
     $sql = "INSERT INTO users (username, email, password, FirstName, LastName, PhoneNumber)
             VALUES ('$user', '$email', '$hashed_password', '$FirstName', '$LastName', '$PhoneNumber')";
 

@@ -6,10 +6,19 @@ session_start();
 
 // Check if the form has been submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve form data
-    $username = mysqli_real_escape_string($db_connection, $_POST['uid']);
-    $password = mysqli_real_escape_string($db_connection, $_POST['pwd']);
     
+    // Retrieve form data:
+    $username = $_POST['uid'];
+    $password = $_POST['pwd'];
+
+    //preventing html injection
+    $username = sanitize($username);
+    $password = sanitize($password);
+
+    //Preventing sqlinjection
+
+    $username = sanitize_sql($username);
+    $password = sanitize_sql($password);
 
     // Query the database
     $sql = "SELECT * FROM users WHERE username='$username'";
