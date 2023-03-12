@@ -29,6 +29,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plaster&family=Poppins:wght@200&display=swap" rel="stylesheet">
     <title>Edit Profile</title>
+
 </head>
 <body>
     <nav>
@@ -67,8 +68,9 @@
             <a class="fpwd" href="change_password.html"><u>Change Password</u></a>
 
             <input type="submit" value="Save" id="submit">
-        </form>
+            <a class="fpwd" href="deleteProfile.html"><u>Delete Profile</u></a>
     </div>
+
 
     <script src="land.js"></script>
     

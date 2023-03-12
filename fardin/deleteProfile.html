@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plaster&family=Poppins:wght@200&display=swap" rel="stylesheet">
-    <title>Change Password</title>
+    <title>Delete Account</title>
 </head>
 <body>
     <nav>
@@ -30,8 +30,10 @@
 
     <div class="container">
         <form action="deleteProfile.php" method="post" class="form">
-            <h2 style="font-size: 2rem;">Delete Account?</h2>
-            <input type="submit" value="Delete Account" id="submit">
+            <h2 style="font-size: 2rem;">Are you sure you want to delete your account?</h2>
+            <input class="box" type="password" name="password" placeholder="Current Password" id = 'password'required>
+            <input type="submit" value="Submit" id="submit">
+            
         </form>
         <div class="side">
             <img src="photos/bgpic1.png" alt="">

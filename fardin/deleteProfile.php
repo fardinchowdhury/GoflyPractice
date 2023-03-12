@@ -1,42 +1,61 @@
 <?php
 
-    session_start();            // start the session
+    // start the session
+    session_start();
 
-    // check if the user is logged in
-    if(!isset($_SESSION['username'])) {
-        header('Location: login.php');
-        exit();
-    }
-
-    // Connect to MySQL database
     $servername = "oceanus.cse.buffalo.edu:3306";
-    $username = "mamuin";
+    $user = "mamuin";
     $password = "50424784";
     $dbname = "mamuin_db";
+    
+    
+    // Get the user ID
+    $user_id = $_SESSION['username'];
+    
 
+    $conn = new mysqli($servername, $user, $password, $dbname);
+    
 
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $conn = new mysqli($servername, $username, $password, $dbname);
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
 
-        // get user id
-        $user = $_POST['uid'];
-
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-        
-        // Delete user from database
-        $sql = "DELETE FROM users WHERE id = $user";
-
-        if ($conn->query($sql) === TRUE) {
-            echo "User account deleted successfully";
-            header("Location: login.html");
-            exit;
+    // Check the connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+    
+    // Get the password entered by the user
+    $password = $_POST['password'];
+    
+    // Query the database for the user's password
+    $sql = "SELECT password FROM users WHERE username = '$user_id'";
+    $result = $conn->query($sql);
+    
+    // Check if the query was successful
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $stored_password = $row['password'];
+    
+        // Check if the entered password matches the stored password
+        if (password_verify($password, $stored_password)) {
+            // Delete the user's profile
+            $sql = "DELETE FROM users WHERE 'username' = '$user_id'";
+            if ($conn->query($sql) === TRUE) {
+                // Logout the user
+                session_destroy();
+                header("Location: signup.php");         // redirect to the signup page
+                exit;
+            }
         } else {
-            echo "Error deleting user account: " . $conn->error;
+            // profile deletion failed because the password was incorrect
+            echo "Invalid password.";
         }
+    }
+    
+    // Close the database connection
+    $conn->close();
 
-        // close database connection
-        $conn->close();
-}
-?>
+    ?>
+    
