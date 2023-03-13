@@ -112,3 +112,6 @@ html {
     width:500px;
     height: 750px;
 }
+.flex-1 {
+    flex: 1;
+}
