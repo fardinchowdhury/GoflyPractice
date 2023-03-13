@@ -37,9 +37,28 @@
             <h4><a href="landing.php">Gofly</a></h4>
         </div>
         <ul class="nav-links">
-            <li><a href="landing.php">Home</a></li>
+            <li><a href="#">Reviews</a></li>
             <li><a href="#">Contact Us</a></li>
-            <li><a href="logout.php">Logout</a></li>
+            <li>
+                <div class="dropdown">
+                    <a href="#">
+                    <i class="fa-solid fa-user"></i>
+                    <?php
+                        if(isset($_SESSION["username"])) {
+                            $username = $_SESSION['username'];
+                            echo "$username";
+                        }
+                    ?>
+                    </a>
+                <!-- dropdown for the user -->
+                    <div class="dropdown-content">
+                        <a class="fpwd" href="change_pass.php">Change Password</a>
+                        <a href="logout.php">Logout</a>
+                    </div>
+                </div>
+
+
+            </li>
         </ul>
         <div class="burger">
             <div class="line1"></div>
@@ -50,13 +69,16 @@
 
     <div class="container">
         <form action="editprofile.php" method="post" class="form-3">
-            <h2 style="font-size: 2rem;">Edit Profile</h2>
-            <?php
-                if(isset($_SESSION['status'])){
-                    echo $_SESSION['status'];
-                    unset($_SESSION['status']);
-                }
-            ?>
+            <h2 style="font-size: 2rem; margin: 1%;">Edit Profile</h2>
+            <p class="sucess">
+                <?php
+                    if(isset($_SESSION['status'])){
+                        echo $_SESSION['status'];
+                        unset($_SESSION['status']);
+                    }
+                ?>
+            </p>
+            
             
             <p>FirstName</p>
             <input class="box" type="text" name="firstname" value= <?php echo $row['FirstName']; ?> required>
@@ -65,13 +87,16 @@
             <p>Phone</p>
             <input class="box" type="tel" name="phone" value= <?php echo $row['PhoneNumber']; ?> required>
             
-            <a class="fpwd" href="change_password.html"><u>Change Password</u></a>
-
             <input type="submit" value="Save" id="submit">
             <a class="fpwd" href="deleteProfile.html"><u>Delete Profile</u></a>
     </div>
 
 
+<<<<<<< HEAD
+=======
+
+    <script src="https://kit.fontawesome.com/fe66f9ddbe.js" crossorigin="anonymous"></script>
+>>>>>>> main
     <script src="land.js"></script>
     
 </body>
