@@ -10,51 +10,46 @@
     
     
     // Get the user ID
-    $user_id = $_SESSION['username'];
+    $uid = $_SESSION['username'];
     
 
     $conn = new mysqli($servername, $user, $password, $dbname);
     
-
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    // Check the connection
+    // check connection
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
     
-    // Get the password entered by the user
+    // get the password entered by the user
     $password = $_POST['password'];
     
     // Query the database for the user's password
-    $sql = "SELECT password FROM users WHERE username = '$user_id'";
+    $sql = "SELECT password FROM users WHERE username = '$uid'";
     $result = $conn->query($sql);
     
-    // Check if the query was successful
+    // check if the query was successful
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         $stored_password = $row['password'];
     
-        // Check if the entered password matches the stored password
-        if (password_verify($password, $stored_password)) {
-            // Delete the user's profile
-            $sql = "DELETE FROM users WHERE 'username' = '$user_id'";
+        // ! check if the password matches
+        if ($password == $stored_password) {
+            // Delete the user's account and all associated data
+            $sql = "DELETE FROM users WHERE username = '$uid'";
             if ($conn->query($sql) === TRUE) {
-                // Logout the user
+                // Logout the user and redirect to the signup page
                 session_destroy();
-                header("Location: signup.php");         // redirect to the signup page
+                header("Location: successDeleteProf.html");
                 exit;
             }
         } else {
-            // profile deletion failed because the password was incorrect
+            // Deletion failed because the password was incorrect
             echo "Invalid password.";
         }
     }
-    
-    // Close the database connection
+
+ 
+    // close the database connection
     $conn->close();
 
     ?>
