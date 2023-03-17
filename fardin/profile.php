@@ -93,11 +93,8 @@
     </div>
 
 
-<<<<<<< HEAD
-=======
 
     <script src="https://kit.fontawesome.com/fe66f9ddbe.js" crossorigin="anonymous"></script>
->>>>>>> main
     <script src="land.js"></script>
     
 </body>
