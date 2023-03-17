@@ -49,6 +49,9 @@ if (isset($_POST['email'])) {
     try {
         $response = $sendgrid->send($email);
         echo "An email has been sent to your email address with instructions on how to reset your password.";
+        // Redirect the user to the login page
+        header("Location: reset_password.php");
+        exit;
     } catch (Exception $e) {
         echo "Error sending email: " . $e->getMessage();
     }
