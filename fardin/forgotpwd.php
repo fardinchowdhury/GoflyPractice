@@ -23,7 +23,7 @@ if (isset($_POST['email'])) {
 
     // Set up the email message
     $email = new Mail();
-    $email->setFrom("muinmuntasir@gmail.com", "GoFly");
+    $email->setFrom("jkace0252@gmail.com", "GoFly");
     $email->setSubject("Password Reset Request");
     $email->addTo($username);
     $email->addContent(
