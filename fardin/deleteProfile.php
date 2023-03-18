@@ -3,11 +3,11 @@
     // start the session
     session_start();
 
-    // Establish database connection
     $servername = "oceanus.cse.buffalo.edu:3306";
-    $username = "mamuin";
+    $user = "mamuin";
     $password = "50424784";
     $dbname = "mamuin_db";
+    
     
     // Get the user ID
     $uid = $_SESSION['username'];
