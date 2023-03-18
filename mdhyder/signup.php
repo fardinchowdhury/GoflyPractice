@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
      $PhoneNumber = $_POST['num'];
  
      // Validate the user input (e.g. check for user's info is already in the database)
-     $sql = "SELECT * FROM users WHERE email = '$email' OR username = '$user' OR phoneNumber = '$PhoneNumber'";
+     $sql = "SELECT * FROM users WHERE email = '$email' OR username = '$username' OR phoneNumber = '$PhoneNumber'";
      $result = $db_connection->query($sql);
      if($result -> num_rows > 0){
         echo "The user already exists";
