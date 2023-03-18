@@ -1,17 +1,12 @@
 <?php
        session_start();
+       require_once ("config.php");
 
-       // Establish database connection
-       $servername = "oceanus.cse.buffalo.edu:3306";
-       $username = "mamuin";
-       $password = "50424784";
-       $dbname = "mamuin_db";
-       $conn = mysqli_connect($servername, $username, $password, $dbname);
        
        // Retrieve user data
        $username = $_SESSION['username'];
        $query = "SELECT * FROM users WHERE username = '$username'";
-       $result = mysqli_query($conn, $query);
+       $result = mysqli_query($db_connection, $query);
        $row = mysqli_fetch_assoc($result);
     
        ?>
@@ -29,7 +24,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plaster&family=Poppins:wght@200&display=swap" rel="stylesheet">
     <title>Edit Profile</title>
-
 </head>
 <body>
     <nav>
@@ -89,7 +83,7 @@
             <input class="box" type="tel" name="phone" value= <?php echo $row['PhoneNumber']; ?> required>
             
             <input type="submit" value="Save" id="submit">
-            <a class="btn-1" href="delete.php">Delete Account</a>
+        </form>
     </div>
 
 
