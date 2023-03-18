@@ -89,7 +89,7 @@
             <input class="box" type="tel" name="phone" value= <?php echo $row['PhoneNumber']; ?> required>
             
             <input type="submit" value="Save" id="submit">
-            <a class="fpwd" href="deleteProfile.html"><u>Delete Profile</u></a>
+            <a class="btn-1" href="delete.php">Delete Account</a>
     </div>
 
 

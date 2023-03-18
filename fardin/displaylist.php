@@ -8,10 +8,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="search.scss">
     <link href="https://fonts.googleapis.com/css2?family=Plaster&family=Poppins:wght@200&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="login.css">
-    <link rel="stylesheet" href="landing.css">
-    <title>Gofly</title>
+    <link rel="stylesheet" href="display.css">
+    <title>Listings</title>
 </head>
 <body>
     <nav>
@@ -63,43 +63,208 @@
         
         ?>
     </div>
-    <div class="search">
-        <?php
+    <!-- Creating Lufthansa Listing -->
+    <div class="listing-container">
+    <div class="box">
+        <ul class="left">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
 
-            $curl = curl_init();
+        <ul class="right">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <div class="ticket">
+            <span class="airline">Lufthansa</span>
+            <span class="airline airlineslip">Price</span>
+            <div class="content">
+                <span class="logo-1"><img src="photos/lufthansa.svg"></span>
+                <span class="jfk">JFK</span>
+                <span class="plane">
+                    <?xml version="1.0" ?>
+                    <svg
+                        clip-rule="evenodd"
+                        fill-rule="evenodd"
+                        height="60"
+                        width="60"
+                        image-rendering="optimizeQuality"
+                        shape-rendering="geometricPrecision"
+                        text-rendering="geometricPrecision"
+                        viewBox="0 0 500 500"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <g stroke="#222">
+                            <line
+                                fill="none"
+                                stroke-linecap="round"
+                                stroke-width="30"
+                                x1="300"
+                                x2="55"
+                                y1="390"
+                                y2="390"/>
+                            <path
+                                d="M98 325c-9 10 10 16 25 6l311-156c24-17 35-25 42-50 2-15-46-11-78-7-15 1-34 10-42 16l-56 35 1-1-169-31c-14-3-24-5-37-1-10 5-18 10-27 18l122 72c4 3 5 7 1 9l-44 27-75-15c-10-2-18-4-28 0-8 4-14 9-20 15l74 63z"
+                                fill="#222"
+                                stroke-linejoin="round"
+                                stroke-width="10"/>
+                        </g>
+                    </svg>
+                </span>
+                <span class="sfo">SFO</span>
 
-            curl_setopt_array($curl, [
-                CURLOPT_URL => "https://travel-advisor.p.rapidapi.com/airports/search?query=united%20states&locale=en_US",
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_FOLLOWLOCATION => true,
-                CURLOPT_ENCODING => "",
-                CURLOPT_MAXREDIRS => 10,
-                CURLOPT_TIMEOUT => 30,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => "GET",
-                CURLOPT_HTTPHEADER => [
-                    "X-RapidAPI-Host: travel-advisor.p.rapidapi.com",
-                    "X-RapidAPI-Key: 938a96b488msh8dcce01e5a2a8ecp14503djsnf93cac40e28b"
-                ],
-            ]);
+                <span style="align-items: center;" class="plane price">
+                    <h1 >$ 1200</h1>
+                </span>
 
-            $response = curl_exec($curl);
-            $err = curl_error($curl);
+                <div class="sub-content">
+                    <span class="watermark">Lufthansa</span>
+                    <span class="name">BOARDING TIME
+                        <br>
+                        <span>8:25PM 3/18/23</span>
+                    </span>
+                        
 
-            curl_close($curl);
+                    <span class="gate">FLIGHT N&deg;<br>
+                        <span>X3-65C3</span>
+                    </span>
 
-            if ($err) {
-                echo "cURL Error #:" . $err;
-            } else {
-                $airports = [$response];
-
-                $codes = array_map(function($airport) {
-                    return $airport['code'];
-                }, $airports);
-                print_r($codes);
-            }
-        ?>
+                </div>
+            </div>
+        </div>
     </div>
+
+
+    <div class="box">
+        <ul class="left">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+
+        <ul class="right">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <div class="ticket">
+            <span class="airline">Lufthansa</span>
+            <span class="airline airlineslip">Price</span>
+            <div class="content">
+                <span class="logo-1"><img src="photos/lufthansa.svg"></span>
+                <span class="jfk">JFK</span>
+                <span class="plane">
+                    <?xml version="1.0" ?>
+                    <svg
+                        clip-rule="evenodd"
+                        fill-rule="evenodd"
+                        height="60"
+                        width="60"
+                        image-rendering="optimizeQuality"
+                        shape-rendering="geometricPrecision"
+                        text-rendering="geometricPrecision"
+                        viewBox="0 0 500 500"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <g stroke="#222">
+                            <line
+                                fill="none"
+                                stroke-linecap="round"
+                                stroke-width="30"
+                                x1="300"
+                                x2="55"
+                                y1="390"
+                                y2="390"/>
+                            <path
+                                d="M98 325c-9 10 10 16 25 6l311-156c24-17 35-25 42-50 2-15-46-11-78-7-15 1-34 10-42 16l-56 35 1-1-169-31c-14-3-24-5-37-1-10 5-18 10-27 18l122 72c4 3 5 7 1 9l-44 27-75-15c-10-2-18-4-28 0-8 4-14 9-20 15l74 63z"
+                                fill="#222"
+                                stroke-linejoin="round"
+                                stroke-width="10"/>
+                        </g>
+                    </svg>
+                </span>
+                <span class="sfo">SFO</span>
+
+                <span style="align-items: center;" class="plane price">
+                    <h1 >USD 1200</h1>
+                </span>
+
+                <div class="sub-content">
+                    <span class="watermark">Lufthansa</span>
+                    <span class="name">BOARDING TIME
+                        <br>
+                        <span>8:25PM 3/18/23</span>
+                    </span>
+                        
+
+                    <span class="gate">FLIGHT N&deg;<br>
+                        <span>X3-65C3</span>
+                    </span>
+
+                    <a href=""class="btn-1  name nameslip">Book</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+        <div class="listing-item">
+            <h2>Listing item 3</h2>
+            <p>Description of listing item 3</p>
+        </div>
+    </div>
+
+
+    
+
+
+
+        
 
     <script src="https://kit.fontawesome.com/fe66f9ddbe.js" crossorigin="anonymous"></script>
     <script src="land.js"></script>

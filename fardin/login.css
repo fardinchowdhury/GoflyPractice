@@ -4,7 +4,7 @@ html {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-  }
+}
 
 .container {
     display: flex;
@@ -128,4 +128,23 @@ html {
 }
 .flex-1 {
     flex: 1;
+}
+
+.btn-1 {
+    display: block;
+    text-align: center;
+    padding: 12px 30px;
+    margin-top: 10px;
+    text-decoration: none;
+    background-color: rgb(124, 100, 231);
+    color: white;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
+
+.btn-1:hover{
+    cursor: pointer;
+    background-color: blueviolet;
 }
