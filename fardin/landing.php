@@ -19,7 +19,7 @@
             <h4><a href="landing.php">Gofly</a></h4>
         </div>
         <ul class="nav-links">
-            
+            <li><a href="displaylist.php">Listings</a></li>
             <li><a href="#">Reviews</a></li>
             <li><a href="#">Contact Us</a></li>
             <li>

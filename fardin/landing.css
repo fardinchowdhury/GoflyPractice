@@ -56,6 +56,9 @@ nav {
     font-weight: bold;
     font-size: 15px;
 }
+.nav-links a:hover{
+    color: black;
+}
 .burger{
     display: none;
     cursor: pointer;
@@ -142,3 +145,13 @@ nav {
     font-size: 1rem;
     margin: 1%;
 }
+
+/* Failed Message */
+.failed{
+    color: rgb(212, 5, 5);
+    text-transform: capitalize;
+    font-weight: bold;
+    font-size: 1rem;
+    margin: 1%;
+}
+
