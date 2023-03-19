@@ -1,6 +1,7 @@
 <?php
 require_once ("config.php");
 
+
 // Check if the form is submitted
 session_start();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -25,9 +26,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
      $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
 
+
     // Insert the new user data into the database
     $sql = "INSERT INTO users (username, email, password, FirstName, LastName, PhoneNumber)
             VALUES ('$user', '$email', '$hashedPassword', '$FirstName', '$LastName', '$PhoneNumber')";
+           
 
     if ($db_connection->query($sql) === TRUE) {
         // Redirect the user to the login page
@@ -38,8 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     $db_connection->close();
-
-
 }
 
 

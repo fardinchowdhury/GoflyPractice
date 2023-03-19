@@ -1,5 +1,6 @@
 <?php
 require_once('config.php');
+require_once('config.php');
 // Establish database connection
 session_start();
 
@@ -9,9 +10,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
     $username = mysqli_real_escape_string($db_connection, $_POST['uid']);
     $password = mysqli_real_escape_string($db_connection, $_POST['pwd']);
+    $username = mysqli_real_escape_string($db_connection, $_POST['uid']);
+    $password = mysqli_real_escape_string($db_connection, $_POST['pwd']);
     
 
     // Query the database
+    $sql = "SELECT * FROM users WHERE username='$username'";
+    $result = mysqli_query($db_connection, $sql);
     $sql = "SELECT * FROM users WHERE username='$username'";
     $result = mysqli_query($db_connection, $sql);
 
@@ -43,6 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
+mysqli_close($db_connection);
 mysqli_close($db_connection);
 ?>
 
