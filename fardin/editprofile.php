@@ -12,6 +12,8 @@ if(!isset($_SESSION['username'])){
 // Process form data if it has been submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+    }
+
     // Get user input
     $firstName = $_POST['firstname'];
     $lastName = $_POST['lastname'];

@@ -2,6 +2,7 @@
        session_start();
        require_once ("config.php");
 
+
        
        // Retrieve user data
        $username = $_SESSION['username'];
@@ -47,6 +48,7 @@
                     </a>
                 <!-- dropdown for the user -->
                     <div class="dropdown-content">
+                        <a href="post_listing.php">Post Listing</a>
                         <a class="fpwd" href="change_pass.php">Change Password</a>
                         <a href="logout.php">Logout</a>
                     </div>
@@ -80,9 +82,10 @@
             <p>LastName</p>
             <input class="box" type="text" name="lastname" value= <?php echo $row['LastName']; ?> required>
             <p>Phone</p>
-            <input class="box" type="tel" name="phone" value= <?php echo $row['PhoneNumber']; ?> required>
+            <input class="box" type="number" name="phone" value= <?php echo $row['PhoneNumber']; ?> required>
             
             <input type="submit" value="Save" id="submit">
+            <a class="btn-1" href="delete.php">Delete Account</a>
         </form>
     </div>
 

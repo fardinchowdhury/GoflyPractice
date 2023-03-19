@@ -24,7 +24,7 @@
         $query = "INSERT INTO flight_listings (airline, flight_number, departure, arrival, departure_date, departure_time, duration, price, seats, class) VALUES ('$airline', '$flight_number', '$departure', '$arrival', '$date', '$time', '$duration', '$price', '$seats', '$class')";
         mysqli_query($db_connection, $query);
         
-        header("location: displaylist2.php");
+        header("location: displaylist.php");
         exit();
     }
     
@@ -36,8 +36,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="login.css">
-    <link rel="stylesheet" href="landing.css">
+    <link rel="stylesheet" href="post.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -66,6 +65,7 @@
                     </a>
                 <!-- dropdown for the user -->
                     <div class="dropdown-content">
+                        <a href="profile.php">My Profile</a>
                         <a class="fpwd" href="change_pass.php">Change Password</a>
                         <a href="logout.php">Logout</a>
                     </div>
@@ -82,38 +82,82 @@
     </nav>
 
     <div class="container">
-        <form method="post" class="form-3">
-            <h2 style="font-size: 2rem; margin: 1%;">Post Flight Listing</h2> 
+        <form autocomplete="off" method="post" class="form">
+            <h2>Post Flight Listing</h2> 
             
-            <p>Airline Name</p>
-            <input class="box" type="text" name="airline"required>
+
+            <section class="child">
+                <p>Airline Name</p>
+                <input list="air-name-lists" class="box" type="text" name="airline" placeholder="Ex.. Emirates"required>
+                <datalist id="air-name-lists">
+                    <option>Emirates</option>
+                    <option>Delta</option>
+                    <option>Jet Blue</option>
+                    <option>American Airlines</option>
+                    <option>Qatar</option>
+                </datalist>
+                
+                <p>Flight Number</p>
+                <input class="box" type="text" name="flightnumber" Placeholder="Ex..Sk54E" required>
+
+                <p><label for="departure">Departure Airport:</label></p>
+                <input list="airports" class="box" type="text" id="departure" name="departure" Placeholder="Ex..JFK" maxlength="3"  required><br>
+
+                <datalist id="airports">
+                    <option>JFK</option>
+                    <option>BUF</option>
+                    <option>SAF</option>
+                    <option>LAG</option>
+                    <option>DAC</option>
+                </datalist>
+
+                <p><label for="arrival">Arrival Airport:</label></p>
+                <input list="airports" class= "box" type="text" id="arrival" name="arrival" Placeholder="Ex..Buf"maxlength="3" required><br>
+
+                <datalist id="airports">
+                    <option>JFK</option>
+                    <option>BUF</option>
+                    <option>SAF</option>
+                    <option>LAG</option>
+                    <option>DAC</option>
+                </datalist>
+
+                <p><label for="date">Departure Date:</label></p>
+                <input class= "box" type="date" id="date" name="date" required><br>
+
+
+
+            </section>
+            <section class="child">
+                <p><label for="price">Price:</label></p>
+                <input class ="box" type="number" id="price" name="price" Placeholder="Ex..654" required><br>
+
+                <p><label for="seats">Available Seats:</label></p>
+                <input class ="box" type="number" id="seats" name="seats" Placeholder="Ex..5"required><br>
+
+
+                <p><label for="seats">Flight Class:</label></p>
+                <select class= "box" id="seats" name="fclass">
+                    <option value="Economy">Economy</option>
+                    <option value="Economy Premium">Economy Premium</option>
+                    <option value="Business Class">Busines Class</option>
+                    <option value="First Class">First Class</option>
+                </select>
+
+                    
+
+
+                
+                
+                <p><label for="time">Departure Time:</label></p>
+                <input class ="box" type="time" id="time" name="time" required><br>
+
+                <p><label for="duration">Duration In Hours:</label></p>
+                <input class ="box" type="text" id="duration" name="duration" Placeholder="Ex..2" required><br>
+            </section>
             
-            <p>Flight Number</p>
-            <input class="box" type="text" name="flightnumber"required>
 
-            <label for="departure">Departure Airport:</label>
-            <input class="box" type="text" id="departure" name="departure" required><br>
-
-            <label for="arrival">Arrival Airport:</label>
-            <input class= "box" type="text" id="arrival" name="arrival" required><br>
-
-            <label for="date">Departure Date:</label>
-            <input class= "box" type="date" id="date" name="date" required><br>
-
-            <label for="time">Departure Time:</label>
-            <input class ="box" type="time" id="time" name="time" required><br>
-
-            <label for="duration">Duration:</label>
-            <input class ="box" type="text" id="duration" name="duration" required><br>
-
-            <label for="price">Price:</label>
-            <input class ="box" type="number" id="price" name="price" required><br>
-
-            <label for="seats">Available Seats:</label>
-            <input class ="box" type="number" id="seats" name="seats" required><br>
-
-            <label for="seats">Flight Class:</label>
-            <input class ="box" type="text" id="seats" name="fclass" required><br>
+            
 
             
             <input type="submit" value="Post Listing" id="submit">
