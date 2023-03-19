@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $servername = "oceanus.cse.buffalo.edu:3306";
     $username = "mamuin";
     $password = "50424784";
-    $dbname = "mamuin_db";
+    $dbname = "cse442_2023_spring_team_y_db";
 
     $conn = new mysqli($servername, $username, $password, $dbname);
 

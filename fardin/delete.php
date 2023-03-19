@@ -43,7 +43,8 @@
                 </a>
                 <!-- dropdown for the user -->
                 <div class="dropdown-content">
-                <a href="profile.php">My Profile</a>
+                    <a href="profile.php">My Profile</a>
+                    <a href="post_listing.php">Post Listing</a>
                     <a class="fpwd" href="change_pass.php">Change Password</a>
                     <a href="logout.php">Logout</a>
                 </div>

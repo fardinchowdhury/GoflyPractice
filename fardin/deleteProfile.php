@@ -6,7 +6,7 @@
     $servername = "oceanus.cse.buffalo.edu:3306";
     $user = "mamuin";
     $password = "50424784";
-    $dbname = "mamuin_db";
+    $dbname = "cse442_2023_spring_team_y_db";
     
     
     // Get the user ID

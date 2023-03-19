@@ -36,6 +36,7 @@
                     </a>
                 <!-- dropdown for the user -->
                     <div class="dropdown-content">
+                        <a href="post_listing.php">Post Listing</a>
                         <a href="profile.php">My Profile</a>
                         <a href="logout.php">Logout</a>
                     </div>

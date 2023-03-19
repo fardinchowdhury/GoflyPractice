@@ -3,9 +3,9 @@
 session_start();
 
 $servername = "oceanus.cse.buffalo.edu:3306";
-$user = "mamuin";
-$pass = "50424784";
-$dbname = "mamuin_db";
+$user = "fardinch";
+$pass = "50310008";
+$dbname = "cse442_2023_spring_team_y_db";
 
 $conn = mysqli_connect($servername, $user, $pass, $dbname);
 

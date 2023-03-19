@@ -23,7 +23,7 @@
             $servername = "oceanus.cse.buffalo.edu:3306";
             $username = "mamuin";
             $password = "50424784";
-            $dbname = "mamuin_db";
+            $dbname = "cse442_2023_spring_team_y_db";
           
             
             $conn = mysqli_connect($servername, $username, $password, $dbname);
