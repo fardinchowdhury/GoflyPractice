@@ -1,12 +1,14 @@
 <?php
        session_start();
        require_once ("config.php");
+       require_once ("config.php");
 
 
        
        // Retrieve user data
        $username = $_SESSION['username'];
        $query = "SELECT * FROM users WHERE username = '$username'";
+       $result = mysqli_query($db_connection, $query);
        $result = mysqli_query($db_connection, $query);
        $row = mysqli_fetch_assoc($result);
     
@@ -32,6 +34,7 @@
             <h4><a href="landing.php">Gofly</a></h4>
         </div>
         <ul class="nav-links">
+        <li><a href="displaylist.php">Listings</a></li>
         <li><a href="displaylist.php">Listings</a></li>
             <li><a href="#">Reviews</a></li>
             <li><a href="#">Contact Us</a></li>

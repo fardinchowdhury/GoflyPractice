@@ -60,8 +60,8 @@ if (isset($_POST['password']) && isset($_POST['confirm_password']) && isset($_PO
         </div>
         <ul class="nav-links">
             <li><a href="#">Reviews</a></li>
-            <li><a href="login.html">Login</a></li>
-            <li><a href="signup.html">Register</a></li>
+            <li><a href="login.php">Login</a></li>
+            <li><a href="signup.php">Register</a></li>
             <li><a href="#">Contact Us</a></li>
             <li>
                 <div class="dropdown">

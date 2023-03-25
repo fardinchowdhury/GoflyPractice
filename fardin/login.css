@@ -114,10 +114,9 @@ html {
 }
 .flex-1 {
     flex: 1;
-<<<<<<< HEAD
+
 }
-=======
-}
+
 
 .btn-1 {
     display: block;
@@ -161,4 +160,4 @@ textarea:valid {
  {
     border-color: #ce1515;
   }
->>>>>>> display
+

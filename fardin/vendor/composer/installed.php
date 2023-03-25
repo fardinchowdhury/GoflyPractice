@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => '__root__',
-        'pretty_version' => 'dev-main',
-        'version' => 'dev-main',
-        'reference' => '3d83afa5ad1c305c07226273ebfa9fa50b0971ab',
+        'pretty_version' => '1.0.0+no-version-set',
+        'version' => '1.0.0.0',
+        'reference' => NULL,
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         '__root__' => array(
-            'pretty_version' => 'dev-main',
-            'version' => 'dev-main',
-            'reference' => '3d83afa5ad1c305c07226273ebfa9fa50b0971ab',
+            'pretty_version' => '1.0.0+no-version-set',
+            'version' => '1.0.0.0',
+            'reference' => NULL,
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -29,9 +29,9 @@
             'dev_requirement' => false,
         ),
         'sendgrid/sendgrid' => array(
-            'pretty_version' => '7.11.5',
-            'version' => '7.11.5.0',
-            'reference' => '1d2fd3b72687fe82264853a8888b014f8f99e81f',
+            'pretty_version' => '8.0.1',
+            'version' => '8.0.1.0',
+            'reference' => '285381257100b73aa50d8d70f0bcfb1f48b63747',
             'type' => 'library',
             'install_path' => __DIR__ . '/../sendgrid/sendgrid',
             'aliases' => array(),

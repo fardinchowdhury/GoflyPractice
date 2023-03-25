@@ -15,7 +15,7 @@ if (isset($_POST['email'])) {
     // Generate a unique token for the password reset link
     $token = substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 6);
 
-    $reset_link = 'http://localhost/GoflyPractice/fardin/reset_password.php';
+    $reset_link = 'https://www-student.cse.buffalo.edu/CSE442-542/2023-Spring/cse-442y/reset_password.php';
 
     // Save the token and expiration time in the database
     $sql = "UPDATE users SET reset_token='$token' WHERE email='$username'";
@@ -65,8 +65,8 @@ if (isset($_POST['email'])) {
         </div>
         <ul class="nav-links">
             <li><a href="#">Reviews</a></li>
-            <li><a href="login.html">Login</a></li>
-            <li><a href="signup.html">Register</a></li>
+            <li><a href="login.php">Login</a></li>
+            <li><a href="signup.php">Register</a></li>
             <li><a href="#">Contact Us</a></li>
         </ul>
         <div class="burger">
@@ -81,7 +81,7 @@ if (isset($_POST['email'])) {
             <h2 style="font-size: 2rem;">Forgot Password</h2>
             <input class="box" type="email" name="email" placeholder="Email" required>
             <input type="submit" value="Reset" id="submit">
-            <p1 id="p-login"> Return to <a href="login.html"><u>Login</u></a></p1>
+            <p1 id="p-login"> Return to <a href="login.php"><u>Login</u></a></p1>
         </form>
         
         <div class="side">

@@ -28,18 +28,22 @@ require_once("config.php");
 
         //If current password is equal to the one in the database
         if(!password_verify($current_password, $user['password'])){
-            echo "Incorrect current password";
+            header("Location: change_pass.php");
+            $_SESSION['status'] = "Incorrect current password";
             exit();
         }
 
 
         // Validate form data
         if ($new_password != $confirm_password) {
-            $error = "New passwords do not match";
+            header("Location: change_pass.php");
+            $_SESSION['status'] = "New passwords do not match";
+            exit();
         } 
 
         if(password_verify($new_password, $user['password'])){
-            echo "Cannot use previous passwords";
+            header("Location: change_pass.php");
+            $_SESSION['status'] = "Cannot use previous passwords";
             exit();
         }
     

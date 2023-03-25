@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($db_connection->query($sql) === TRUE) {
     // Redirect the user to the login page
-    header("Location: login.html");
+    header("Location: login.php");
     exit;
     } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($db_connection);

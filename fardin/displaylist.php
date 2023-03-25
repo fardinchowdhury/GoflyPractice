@@ -55,14 +55,12 @@
     </nav>
 
     <div class="wel"> 
-        <?php
-
+    <?php
         if(isset($_SESSION["username"])) {
             $username = $_SESSION['username'];
-            echo "<h1>Welcome, Boss!</h1>";
+            echo "<h1>Welcome, $username!</h1>";
         }
-        
-        ?>
+    ?>
     </div>
 
 

@@ -53,6 +53,14 @@
     <div class="container">
         <form action="change_password.php" method="post" class="form">
             <h2 style="font-size: 2rem;">Change Password</h2>
+            <p class="failed">
+                <?php
+                    if(isset($_SESSION['status'])){
+                        echo $_SESSION['status'];
+                        unset($_SESSION['status']);
+                    }
+                ?>
+            </p>
             <input class="box" type="password" name="cpwd" placeholder="Current Password" id = 'password'required>
             <input class="box" type="password" name="newp" placeholder="New Password" id = 'password'required>
             <input class="box" type="password" name="cnewp" placeholder="Confirm New Password" id = 'password'required>
