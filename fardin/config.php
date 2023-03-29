@@ -4,7 +4,7 @@ global $db_connection;
 //Connect to the databse using mysqli
 $servername = "oceanus.cse.buffalo.edu:3306";
 $username = "mdhyder";
-$password = "50424784";
+$password = "50313569";
 $dbname = "cse442_2023_spring_team_y_db";
 
 $db_connection = new mysqli($servername, $username, $password, $dbname);

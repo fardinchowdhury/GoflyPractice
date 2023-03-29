@@ -1,17 +1,13 @@
 <?php
        session_start();
+       require_once ("config.php");
 
-       // Establish database connection
-       $servername = "oceanus.cse.buffalo.edu:3306";
-       $username = "mamuin";
-       $password = "50424784";
-       $dbname = "mamuin_db";
-       $conn = mysqli_connect($servername, $username, $password, $dbname);
+
        
        // Retrieve user data
        $username = $_SESSION['username'];
        $query = "SELECT * FROM users WHERE username = '$username'";
-       $result = mysqli_query($conn, $query);
+       $result = mysqli_query($db_connection, $query);
        $row = mysqli_fetch_assoc($result);
     
        ?>
@@ -25,7 +21,6 @@
     <link rel="stylesheet" href="login.css">
     <link rel="stylesheet" href="landing.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plaster&family=Poppins:wght@200&display=swap" rel="stylesheet">
     <title>Edit Profile</title>
@@ -36,6 +31,7 @@
             <h4><a href="landing.php">Gofly</a></h4>
         </div>
         <ul class="nav-links">
+        <li><a href="displaylist.php">Listings</a></li>
             <li><a href="#">Reviews</a></li>
             <li><a href="#">Contact Us</a></li>
             <li>
@@ -51,6 +47,7 @@
                     </a>
                 <!-- dropdown for the user -->
                     <div class="dropdown-content">
+                        <a href="post_listing.php">Post Listing</a>
                         <a class="fpwd" href="change_pass.php">Change Password</a>
                         <a href="logout.php">Logout</a>
                     </div>
@@ -84,9 +81,10 @@
             <p>LastName</p>
             <input class="box" type="text" name="lastname" value= <?php echo $row['LastName']; ?> required>
             <p>Phone</p>
-            <input class="box" type="tel" name="phone" value= <?php echo $row['PhoneNumber']; ?> required>
+            <input class="box" type="number" name="phone" value= <?php echo $row['PhoneNumber']; ?> required>
             
             <input type="submit" value="Save" id="submit">
+            <a class="btn-1" href="delete.php">Delete Account</a>
         </form>
     </div>
 
