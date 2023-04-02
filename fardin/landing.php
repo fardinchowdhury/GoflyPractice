@@ -19,10 +19,10 @@
             <h4><a href="landing.php">Gofly</a></h4>
         </div>
         <ul class="nav-links">
-            <li><a href="#"><i class="fa-sharp fa-solid fa-cart-flatbed-suitcase fa-bounce" ></i> My Bookings</a></li>
+            <li><a href="#"><i class="fa-sharp fa-solid fa-cart-flatbed-suitcase fa-bounce" ></i> Bookings</a></li>
             <li><a href="displaylist.php">Listings</a></li>
             <li><a href="#">Reviews</a></li>
-            <li><a href="#">Contact Us</a></li>
+            
             <li>
                 <div class="dropdown">
                     <a href="#">
@@ -40,6 +40,7 @@
                     <div class="dropdown-content">
                         <a href="profile.php">My Profile</a>
                         <a href="post_listing.php">Post Listing</a>
+                        <a href="#">Contact Us</a>
                         <a class="fpwd" href="change_pass.php">Change Password</a>
                         <a href="logout.php">Logout</a>
                     </div>
