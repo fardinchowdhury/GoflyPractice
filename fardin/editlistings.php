@@ -94,16 +94,16 @@ mysqli_close($db_connection);
 
 
     <div class="container">
-        <form autocomplete="off" method="post" class="form" action='editlistings.php'>
+        <form autocomplete="off" method="post" class="form" action='updateListing.php'>
             <h2>Edit Flight Listing</h2>
-            <!-- <p class="failed">
+            <p class="failed">
                 <?php
                 if(isset($_SESSION['status'])){
                     echo $_SESSION['status'];
                     unset($_SESSION['status']);
                 }
             ?>
-            </p> -->
+            </p> 
 
 
             <section class="child">
@@ -119,7 +119,7 @@ mysqli_close($db_connection);
                 </datalist>
 
                 <p>Flight Number</p>
-                <input class="box" type="text" name="flightnumber" value="<?php echo $flight_number; ?>"required>
+                <input class="box" type="text" name="flightnumber" value="<?php echo $flight_number; ?>" readonly>
 
                 <p><label for="departure">Departure Airport:</label></p>
                 <input list="airports" class="box" type="text" id="departure" name="departure" 
@@ -185,7 +185,7 @@ mysqli_close($db_connection);
 
 
 
-            <input type="submit" value="Edit Listing" id="submit">
+            <input type="submit" value="Save Listing" id="submit">
         </form>
     </div> 
 

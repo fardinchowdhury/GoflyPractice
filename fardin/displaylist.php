@@ -121,7 +121,7 @@
                 <li></li>
                 <li></li>
             </ul>
-            <div action = 'editlistings.php' class="ticket">
+            <div action = 'editlistings.php' class="ticket" method = "get">
                 <span class="airline"><?php echo $row["airline"];?></span>
                 <span class="airline airlineslip">Price</span>
                 <!-- <a class="btn-1" href="editlistings.php">Edit ticket</a> -->
