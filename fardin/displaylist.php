@@ -39,7 +39,6 @@
                     <div class="dropdown-content">
                         <a href="profile.php">My Profile</a>
                         <a href="post_listing.php">Post Listing</a>
-                        <a href="editlistings.php">Edit Listing</a>
                         <a class="fpwd" href="change_pass.php">Change Password</a>
                         <a href="logout.php">Logout</a>
                     </div>
@@ -122,7 +121,7 @@
                 <li></li>
                 <li></li>
             </ul>
-            <div class="ticket">
+            <div action = 'editlistings.php' class="ticket">
                 <span class="airline"><?php echo $row["airline"];?></span>
                 <span class="airline airlineslip">Price</span>
                 <!-- <a class="btn-1" href="editlistings.php">Edit ticket</a> -->
@@ -165,9 +164,8 @@
                             <h1 ><?php echo "USD" ." ". $row["price"];?></h1>                       
 
                         </span>
-                        <a class="btn-1" href="delete.php">Delete Account</a>
                         <span>                            
-                            <h1><a href="editlistings.php"> Edit </a></span></h1>
+                            <!-- <h1><a href="editlistings.php"> Edit </a></span></h1> -->
                         <div class="sub-content">
                             <span class="watermark"><?php echo $row["airline"];?></span>
                             <span class="name">BOARDING TIME<span>
@@ -178,7 +176,10 @@
 
                                 <span class="gate">FLIGHT N&deg;<br>
                                         <span><?php echo $row["flight_number"];?></span>
+                                        <?php echo '<a class="btn-2" href= "editlistings.php?id=' . $row["id"] .'";>Edit Ticket</a>'?>
+
                                     </span>
+                                    
 
                                 </div>
                             </div>

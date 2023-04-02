@@ -1,65 +1,46 @@
 <?php
-       session_start();
-       require_once ("config.php");
-
-       
-    //    // Retrieve user data
-    //    $username = $_SESSION['username'];
-    //    $query = "SELECT * FROM users WHERE username = '$username'";
-    //    $result = mysqli_query($db_connection, $query);
-    //    $row = mysqli_fetch_assoc($result);
-
-       if($_SERVER["REQUEST_METHOD"] == "POST") {
-        $airline = mysqli_real_escape_string($db_connection, $_POST['airline']);
-        $flight_number = mysqli_real_escape_string($db_connection, $_POST['flightnumber']);
-        $departure = mysqli_real_escape_string($db_connection, $_POST['departure']);
-        $arrival = mysqli_real_escape_string($db_connection, $_POST['arrival']);
-        $date = mysqli_real_escape_string($db_connection, $_POST['date']);
-        $time = mysqli_real_escape_string($db_connection, $_POST['time']);
-        $duration = mysqli_real_escape_string($db_connection, $_POST['duration']);
-        $price = mysqli_real_escape_string($db_connection, $_POST['price']);
-        $seats = mysqli_real_escape_string($db_connection, $_POST['seats']);
-        $class = mysqli_real_escape_string($db_connection, $_POST['fclass']);
+session_start();
+require_once ("config.php");
 
 
-        // Check if the Flight Number is in the database
-        $sql = "SELECT * From flight_listings where flight_number = '$flight_number'";
-        
-        $result = $db_connection -> query($sql);
-        if($result -> num_rows == 0){
-            header("Location: editlistings.php");
-            $_SESSION['status'] = "The Flight does not exist";
-            exit();
-        }
-        
-        $query = "UPDATE  flight_listings SET 
-        airline = '$airline', 
-        departure = '$departure', 
-        arrival = '$arrival' , 
-        departure_date = '$date', 
-        departure_time ='$time', 
-        duration = '$duration', 
-        price = '$price', 
-        seats = '$seats', 
-        class = '$class' WHERE flight_number = '$flight_number'";
-        
-        if($db_connection->query($query) === TRUE){
-            //Redirect to the display listing page
-            header("Location: displaylist.php");
-            exit();
-        }
-        else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($db_connection);
-        }
-        $db_connection->close();
-        
-        
-    }
-    
-       ?>
+// Check if the user is logged in.
+// If not, redirect them to the login page.
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit();
+}
+
+//Get the ticket ID from the query parameter.
+$ticket_id = $_GET['id'];
+
+
+// Get the current ticket information from the database
+$stmt = mysqli_prepare($db_connection, "SELECT * FROM flight_listings WHERE id=?");
+
+//binding the type of parameter
+mysqli_stmt_bind_param($stmt, "i", $ticket_id);
+mysqli_stmt_execute($stmt);
+
+$result = mysqli_stmt_get_result($stmt);
+$ticket = mysqli_fetch_assoc($result);
+
+$airline = $ticket['airline'];
+$flight_number = $ticket['flight_number'];
+$departure = $ticket['departure'];
+$arrival = $ticket['arrival'];
+$date = $ticket['departure_date'];
+$time = $ticket['departure_time'];
+$duration = $ticket['duration'];
+$price = $ticket['price'];
+$seats = $ticket['seats'];
+$class = $ticket['class'];
+
+mysqli_close($db_connection);
+?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -72,27 +53,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Plaster&family=Poppins:wght@200&display=swap" rel="stylesheet">
     <title>Edit Listings</title>
 </head>
+
 <body>
     <nav>
         <div class="logo">
             <h4><a href="landing.php">Gofly</a></h4>
         </div>
         <ul class="nav-links">
-        <li><a href="displaylist.php">Listings</a></li>
+            <li><a href="displaylist.php">Listings</a></li>
             <li><a href="#">Reviews</a></li>
             <li><a href="#">Contact Us</a></li>
             <li>
                 <div class="dropdown">
                     <a href="#">
-                    <i class="fa-solid fa-user"></i>
-                    <?php
-                        if(isset($_SESSION["username"])) {
-                            $username = $_SESSION['username'];
-                            echo "$username";
-                        }
-                    ?>
+                        <i class="fa-solid fa-user"></i>
+                        <?php
+                    if(isset($_SESSION["username"])) {
+                        $username = $_SESSION['username'];
+                        echo "$username";
+                    }
+                ?>
                     </a>
-                <!-- dropdown for the user -->
+                    <!-- dropdown for the user -->
                     <div class="dropdown-content">
                         <a href="profile.php">My Profile</a>
                         <a class="fpwd" href="change_pass.php">Change Password</a>
@@ -110,22 +92,24 @@
         </div>
     </nav>
 
+
     <div class="container">
-        <form autocomplete="off" method="post" class="form" action = 'editlistings.php'>
-            <h2>Edit Flight Listing</h2> 
-            <p class="sucess">
+        <form autocomplete="off" method="post" class="form" action='editlistings.php'>
+            <h2>Edit Flight Listing</h2>
+            <!-- <p class="failed">
                 <?php
-                    if(isset($_SESSION['status'])){
-                        echo $_SESSION['status'];
-                        unset($_SESSION['status']);
-                    }
-                ?>
-            </p>
-            
+                if(isset($_SESSION['status'])){
+                    echo $_SESSION['status'];
+                    unset($_SESSION['status']);
+                }
+            ?>
+            </p> -->
+
 
             <section class="child">
                 <p>Airline Name</p>
-                <input list="air-name-lists" class="box" type="text" name="airline" placeholder="Ex.. Emirates"required>
+                <input list="air-name-lists" class="box" type="text" name="airline" value="<?php echo $airline; ?>"
+                    required>
                 <datalist id="air-name-lists">
                     <option>Emirates</option>
                     <option>Delta</option>
@@ -133,12 +117,14 @@
                     <option>American Airlines</option>
                     <option>Qatar</option>
                 </datalist>
-                
+
                 <p>Flight Number</p>
-                <input class="box" type="text" name="flightnumber" Placeholder="Ex..Sk54E" required>
+                <input class="box" type="text" name="flightnumber" value="<?php echo $flight_number; ?>"required>
 
                 <p><label for="departure">Departure Airport:</label></p>
-                <input list="airports" class="box" type="text" id="departure" name="departure" Placeholder="Ex..JFK" maxlength="3"  required><br>
+                <input list="airports" class="box" type="text" id="departure" name="departure" 
+                    value="<?php echo $departure; ?>"
+                    maxlength="3" required><br>
 
                 <datalist id="airports">
                     <option>JFK</option>
@@ -149,7 +135,9 @@
                 </datalist>
 
                 <p><label for="arrival">Arrival Airport:</label></p>
-                <input list="airports" class= "box" type="text" id="arrival" name="arrival" Placeholder="Ex..Buf"maxlength="3" required><br>
+                <input list="airports" class="box" type="text" id="arrival" name="arrival" 
+                    value="<?php echo $arrival; ?>"
+                    maxlength="3" required><br>
 
                 <datalist id="airports">
                     <option>JFK</option>
@@ -160,51 +148,52 @@
                 </datalist>
 
                 <p><label for="date">Departure Date:</label></p>
-                <input class= "box" type="date" id="date" name="date" required><br>
+                <input class="box" type="date" id="date" name="date" value="<?php echo $date; ?>" required><br>
 
 
 
             </section>
             <section class="child">
                 <p><label for="price">Price:</label></p>
-                <input class ="box" type="number" id="price" name="price" Placeholder="Ex..654" required><br>
+                <input class="box" type="number" id="price" name="price" value="<?php echo $price; ?>" required><br>
 
                 <p><label for="seats">Available Seats:</label></p>
-                <input class ="box" type="number" id="seats" name="seats" Placeholder="Ex..5"required><br>
+                <input class="box" type="number" id="seats" name="seats" value="<?php echo $seats; ?>" required><br>
 
 
                 <p><label for="seats">Flight Class:</label></p>
-                <select class= "box" id="seats" name="fclass">
-                    <option value="Economy">Economy</option>
-                    <option value="Economy Premium">Economy Premium</option>
-                    <option value="Business Class">Busines Class</option>
-                    <option value="First Class">First Class</option>
+                <select class="box" id="seats"  name="fclass" value="<?php echo $class; ?>">
+                    <option >Economy</option>
+                    <option >Economy Premium</option>
+                    <option >Busines Class</option>
+                    <option >First Class</option>
                 </select>
 
-                    
 
 
-                
-                
+
+
+
                 <p><label for="time">Departure Time:</label></p>
-                <input class ="box" type="time" id="time" name="time" required><br>
+                <input class="box" type="time" id="time" name="time"  value="<?php echo $time; ?>" required><br>
 
                 <p><label for="duration">Duration In Hours:</label></p>
-                <input class ="box" type="text" id="duration" name="duration" Placeholder="Ex..2" required><br>
+                <input class="box" type="text" id="duration" name="duration" value="<?php echo $duration; ?>" required><br>
             </section>
-            
 
-            
 
-            
+
+
+
             <input type="submit" value="Edit Listing" id="submit">
         </form>
-    </div>
+    </div> 
 
 
 
     <script src="https://kit.fontawesome.com/fe66f9ddbe.js" crossorigin="anonymous"></script>
     <script src="land.js"></script>
-    
+
 </body>
+
 </html>
