@@ -21,7 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     header('Location: success_submision.html');
     exit;
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -45,8 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
         <ul class="nav-links">
             <li><a href="#">Reviews</a></li>
-            <li><a href="signup.php">Register</a></li>
             <li><a href="#">Contact Us</a></li>
+            <li><a href="signup.php">Register</a></li>
         </ul>
         <div class="burger">
             <div class="line1"></div>
@@ -56,22 +55,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </nav>
 
     <div class="container">
-        <form action="login.php" method="post" class="form color-g">
+        <form action="https://formspree.io/f/mlekpwqw" method="post" class="form color-g">
             <h2>Contact Us</h2>
-            <p class="failed">
-                <?php
-                    if(isset($_SESSION['status'])){
-                        echo $_SESSION['status'];
-                        unset($_SESSION['status']);
-                    }
-                ?>
-            </p>
             
             <input class="box" type="text" name="name" placeholder="Enter Your Name" required>
             <input class="box" type="text" name="email" placeholder="Enter Your Email Address" required>
-            <input class="box" type="text" name="msg" style="height:420px;" placeholder="Go ahead, We are Listening..." required>
-            
-            <input style type="submit" value="Submit" id="submit">
+            <textarea class="box" name="message" rows="4" cols="50" placeholder="Enter text here..."></textarea>
+            <input type="submit" value="Submit" id="submit">
         </form>
         <div class="side">
             <img src="photos/bgpic1.png" alt="">
