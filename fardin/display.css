@@ -625,3 +625,45 @@ nav {
     cursor: pointer;
     background-color: blueviolet;
 }
+
+/* .sort-dropdown {
+  display: inline-block;
+  margin: 10px;
+}
+
+.sort-label {
+  font-size: 15px;
+  font-weight: bold;
+  color: rgb(238, 240, 241);
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 3px;
+}
+
+.select-container {
+  position: relative;
+  display: inline-block;
+}
+
+.sort-select {
+  appearance: none;
+  background-color: rgb(130, 111, 236);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  padding: 5px 10px;
+  width: auto;
+}
+
+.select-container::after {
+  content: "▼";
+  color: white;
+  font-size: 12px;
+  position: absolute;
+  right: 10px;
+  top: 8px;
+} */
