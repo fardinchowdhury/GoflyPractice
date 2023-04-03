@@ -1,28 +1,3 @@
-<?php
-require_once('config.php');
-// Establish database connection
-session_start();
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Retrieve form data
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $message = $_POST['message'];
-
-    // Send email using SendGrid API
-    $sendgrid = new \SendGrid('YOUR_API_KEY');
-    $email = new \SendGrid\Mail\Mail(); 
-    $email->setFrom("YOUR_EMAIL_ADDRESS", "Your Name");
-    $email->setSubject("Contact Form Submission");
-    $email->addTo("RECIPIENT_EMAIL_ADDRESS", "Recipient Name");
-    $email->addContent("text/plain", "Name: $name\nEmail: $email\nMessage: $message");
-    $response = $sendgrid->send($email);
-
-    // Redirect to thank you page
-    header('Location: success_submision.html');
-    exit;
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,8 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <form action="https://formspree.io/f/mlekpwqw" method="post" class="form color-g">
             <h2>Contact Us</h2>
             
-            <input class="box" type="text" name="name" placeholder="Enter Your Name" required>
-            <input class="box" type="text" name="email" placeholder="Enter Your Email Address" required>
+            <input class="box" type="text" name="name" pattern="[a-zA-Z]+" title="Please enter only alphabetical letters." placeholder="Enter Your Name" required>
+            <input class="box" type="email" name="email" placeholder="Enter Your Email Address" required>
             <textarea class="box" name="message" rows="4" cols="50" placeholder="Enter text here..."></textarea>
             <input type="submit" value="Submit" id="submit">
         </form>
@@ -67,9 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <img src="photos/bgpic1.png" alt="">
         </div>
     </div>
-
-    <script src="land.js"></script>
+</script>
     
 </body>
 </html>
-
