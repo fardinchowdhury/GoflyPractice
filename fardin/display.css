@@ -626,6 +626,7 @@ nav {
     background-color: blueviolet;
 }
 
+
 /* .sort-dropdown {
   display: inline-block;
   margin: 10px;
@@ -667,3 +668,24 @@ nav {
   right: 10px;
   top: 8px;
 } */
+
+.btn-2 {
+  display: block;
+  text-align: center;
+  padding: 10px 25px;
+  margin-top: 56.5px;
+  text-decoration: none;
+  background-color: rgb(124, 100, 231);
+  color: white;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  margin-left: 150px;
+}
+
+.btn-2:hover{
+  cursor: pointer;
+  background-color: blueviolet;
+}
+

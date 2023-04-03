@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plaster&family=Poppins:wght@200&display=swap" rel="stylesheet">
-    <title>Login</title>
+    <title>Edit Profile</title>
 </head>
 <body>
     <nav>
@@ -19,8 +20,9 @@
         </div>
         <ul class="nav-links">
             <li><a href="#">Reviews</a></li>
-            <li><a href="#">Contact Us</a></li>
+            <li><a href="login.php">Login</a></li>
             <li><a href="signup.php">Register</a></li>
+            <li><a href="#">Contact Us</a></li>
         </ul>
         <div class="burger">
             <div class="line1"></div>
@@ -30,19 +32,14 @@
     </nav>
 
     <div class="container">
-        <form action="https://formspree.io/f/mlekpwqw" method="post" class="form color-g">
-            <h2>Contact Us</h2>
+        <form action="login.php" method="post" class="form-3">
+            <h2 style="font-size: 2rem;">Thank you for your submission.</h2>
+            <input type="submit" value="Back to Login" id="submit">
             
-            <input class="box" type="text" name="name" pattern="[a-zA-Z]+" title="Please enter only alphabetical letters." placeholder="Enter Your Name" required>
-            <input class="box" type="email" name="email" placeholder="Enter Your Email Address" required>
-            <textarea class="box" name="message" rows="4" cols="50" placeholder="Enter text here..."></textarea>
-            <input type="submit" value="Submit" id="submit">
         </form>
-        <div class="side">
-            <img src="photos/bgpic1.png" alt="">
-        </div>
     </div>
-</script>
+
+    <script src="land.js"></script>
     
 </body>
 </html>
