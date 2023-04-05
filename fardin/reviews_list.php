@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="login.css">
     <link rel="stylesheet" href="landing.css">
+    <link rel="stylesheet" href="reviews_list.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plaster&family=Poppins:wght@200&display=swap" rel="stylesheet">
@@ -29,8 +29,8 @@
     </nav>
 
     <div class="container">
+        <h2>Reviews</h2>
         <div class="reviews-container">
-            <h2>Reviews</h2>
             <?php
             $filename = 'reviews_data.txt';
             if (file_exists($filename)) {
@@ -44,7 +44,7 @@
             ?>
             <div class="review-container">
                 <div class="review">
-                    <h3><?php echo htmlspecialchars($full_name); ?></h3>
+                <h3><?php echo htmlspecialchars($full_name); ?></h3>
                     <div class="rating">
                         <?php
                         for ($i = 1; $i <= 5; $i++) {
@@ -54,7 +54,6 @@
                     </div>
                     <p><?php echo htmlspecialchars($comment); ?></p>
                 </div>
-                <hr>
             </div>
             <?php
                     }
@@ -67,6 +66,7 @@
             ?>
         </div>
     </div>
-    
+
 </body>
 </html>
+
