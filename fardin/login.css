@@ -182,3 +182,10 @@ textarea:valid {
     color: rgb(124, 100, 231);
 }
 
+.review-container {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+}
