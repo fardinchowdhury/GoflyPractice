@@ -121,75 +121,36 @@
                 </select>
             </div>
 
-    <!-- search bar -->
-    <!-- <div class="search">
-        <form action="search.php" method="Post">
-            <input type="text" id="searchBar" placeholder="" value="Search..." maxlength="25" autocomplete="off" onMouseDown="" onBlur="">
-            <input type="submit" id="SearchBtn" value="Submit!">
->>>>>>> origin/main
-        </form>
-    </div> -->
-
-
 
  
-    <?php
-		require_once ("config.php");
+            <?php
+	require_once("config.php");
 
-		$sql = "SELECT * FROM flight_listings";
-		$result = mysqli_query($db_connection, $sql);
+	$limit = 5;
+	$page = isset($_GET['page']) ? $_GET['page'] : 1;
+	$offset = ($page - 1) * $limit;
 
-		if (mysqli_num_rows($result) > 0) {
-			// output data of each row
-			while($row = mysqli_fetch_assoc($result)) {
-                ?>
-                
-                
-<!-- Creating Lufthansa Listing -->
-<div class="container">
-        <div class="box">
-            <ul class="left">
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
+	$sql = "SELECT * FROM flight_listings LIMIT $limit OFFSET $offset";
+	$result = mysqli_query($db_connection, $sql);
 
-            <ul class="right">
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
-            <div action = 'editlistings.php' class="ticket" method = "get">
-                <span class="airline"><?php echo $row["airline"];?></span>
-                <span class="airline airlineslip">Price</span>
-                <!-- <a class="btn-1" href="editlistings.php">Edit ticket</a> -->
-                <div class="content">
-                    <span class="logo-1">
-                        <img src="photos/lufthansa.svg"></span>
-                        <span class="jfk"><?php echo $row["departure"];?></span>
-                        <span class="plane">
+	if (mysqli_num_rows($result) > 0) {
+		// output data of each row
+		while ($row = mysqli_fetch_assoc($result)) {
+			?>
+
+			<!-- Creating Lufthansa Listing -->
+			<div class="container">
+				<div class="box">
+
+					<div action='editlistings.php' class="ticket" method="get">
+						<span class="airline"><?php echo $row["airline"]; ?></span>
+						<span class="airline airlineslip">Price</span>
+						<div class="content">
+							<span class="logo-1">
+								<img src="photos/lufthansa.svg">
+							</span>
+							<span class="jfk"><?php echo $row["departure"]; ?></span>
+                            <span class="plane">
 
                             <svg
                                 clip-rule="evenodd"
@@ -218,47 +179,106 @@
                                 </g>
                             </svg>
                         </span>
-                        <span class="sfo"><?php echo $row["arrival"];?></span>
+							<span class="sfo"><?php echo $row["arrival"]; ?></span>
 
-                        <span style="align-items: center;" class="plane price">
-                            <h1 ><?php echo "USD" ." ". $row["price"];?></h1>                       
+							<span style="align-items: center;" class="plane price">
+								<h1><?php echo "USD" . " " . $row["price"]; ?></h1>
+							</span>
+							<div class="sub-content">
+								<span class="watermark"><?php echo $row["airline"]; ?></span>
+								<span class="name">BOARDING TIME<span>
+										<br>
+										<span><?php echo $row["departure_date"] . " " . $row["departure_time"]; ?></span>
+									</span>
+								</span>
 
-                        </span>
-                        <span>                            
-                            <!-- <h1><a href="editlistings.php"> Edit </a></span></h1> -->
-                        <div class="sub-content">
-                            <span class="watermark"><?php echo $row["airline"];?></span>
-                            <span class="name">BOARDING TIME<span>
-                                    <br>
-                                        <span><?php echo $row["departure_date"] . " " . $row["departure_time"] ;?></span>
-                                    </span>
-                                </span>
+								<span class="gate">FLIGHT N&deg;<br>
+									<span><?php echo $row["flight_number"]; ?></span>
+									<?php echo '<a class="btn-2" href="editlistings.php?id=' . $row["id"] . '">Edit Ticket</a>' ?>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
-                                <span class="gate">FLIGHT N&deg;<br>
-                                        <span><?php echo $row["flight_number"];?></span>
-                                        <?php echo '<a class="btn-2" href= "editlistings.php?id=' . $row["id"] .'";>Edit Ticket</a>'?>
-
-                                    </span>
-                                    
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-            <?php
+			<?php
+		}
+		// add pagination links
+		$sql = "SELECT COUNT(*) AS count FROM flight_listings";
+		$result = mysqli_query($db_connection, $sql);
+		$row = mysqli_fetch_assoc($result);
+		$count = $row['count'];
+		$pages = ceil($count / $limit);
+		if ($pages > 1) {
+			echo '<div class="pagination">';
+			for ($i = 1; $i <= $pages; $i++) {
+				if ($i == $page) {
+					echo "<span class='current'>$i</span>";
+				} else {
+					echo "<a href='?page=$i'>$i</a>";
+				}
 			}
-		} else {
-			echo "<p>No results found.</p>";
+			echo '</div>';
+		}
+	} else {
+		echo "<p>No results found.</p>";
+	}
+
+	mysqli_close($db_connection);
+?>
+
+<style>
+	.pagination {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-top: 50px;
+	}
+
+	.pagination a,
+	.pagination span {
+		padding: 10px 20px;
+		margin: 0 10px;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+		font-size: 16px;
+		text-align: center;
+		color: #555;
+		text-decoration: none;
+	}
+
+	.pagination a:hover {
+		background-color: #ccc;
+	}
+
+	.pagination .current {
+		background-color: #007bff;
+		color: #fff;
+	}
+
+	.pagination .ellipsis {
+		padding: 10px;
+		margin: 0 10px;
+		border: none;
+		background-color: transparent;
+		color: #555;
+		font-size: 16px;
+		cursor: default;
+	}
+
+	@media only screen and (max-width: 768px) {
+		.pagination {
+			flex-direction: column;
 		}
 
-        
-
-		mysqli_close($db_connection);
-
-	?>
+		.pagination a,
+		.pagination span,
+		.pagination .ellipsis {
+			margin: 10px 0;
+		}
+	}
+</style>
        
 
 
