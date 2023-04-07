@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,45 +13,21 @@
     <title>Listings</title>
 </head>
 <body>
-    <nav>
-        <div class="logo">
-            <h4><a href="landing.php">Gofly</a></h4>
-        </div>
-        <ul class="nav-links">
-            <li><a href="displaylist.php">Listings</a></li>
-            <li><a href="#">Reviews</a></li>
-            <li><a href="#">Contact Us</a></li>
-            <li>
-                <div class="dropdown">
-                    <a href="#">
-                    <i class="fa-solid fa-user"></i>
-                    <?php
-                        session_start();
+    <?php 
+        // Check the session status
+        $status = session_status();
 
-                        if(isset($_SESSION["username"])) {
-                            $username = $_SESSION['username'];
-                            echo "$username";
-                        }
-                    ?>
-                    </a>
-                <!-- dropdown for the user -->
-                    <div class="dropdown-content">
-                        <a href="profile.php">My Profile</a>
-                        <a href="post_listing.php">Post Listing</a>
-                        <a class="fpwd" href="change_pass.php">Change Password</a>
-                        <a href="logout.php">Logout</a>
-                    </div>
-                </div>
-            </li>
-        </ul>
+        if ($status === PHP_SESSION_ACTIVE) {
+            // Session is active
+            include_once 'navbar.php';
+        } else {
+            session_start();
+            // Session is not active
+            include_once 'navbar.php';
+
+        }
         
-        <!-- Create a burger for mobile view -->
-        <div class="burger">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
-        </div>
-    </nav>
+    ?>
 
     <div class="wel"> 
     <?php
@@ -123,7 +98,7 @@
 
 
  
-            <?php
+    <?php
 	require_once("config.php");
 
 	$limit = 5;
@@ -151,7 +126,6 @@
 							</span>
 							<span class="jfk"><?php echo $row["departure"]; ?></span>
                             <span class="plane">
-
                             <svg
                                 clip-rule="evenodd"
                                 fill-rule="evenodd"
@@ -178,14 +152,17 @@
                                         stroke-width="10"/>
                                 </g>
                             </svg>
+                            
                         </span>
 							<span class="sfo"><?php echo $row["arrival"]; ?></span>
-
+                            
 							<span style="align-items: center;" class="plane price">
-								<h1><?php echo "USD" . " " . $row["price"]; ?></h1>
+								<h1><?php echo "$" . " " . $row["price"]; ?></h1>
+                                
+                                <?php echo '<a class="btn-2" href="editlistings.php?id=' . $row["id"] . '">Edit Ticket</a>' ?>
 							</span>
 							<div class="sub-content">
-								<span class="watermark"><?php echo $row["airline"]; ?></span>
+								<span style="display:inline-block; white-space: nowrap; overflow: hidden; max-width: 9ch;" class="watermark"><?php echo $row["airline"]; ?></span>
 								<span class="name">BOARDING TIME<span>
 										<br>
 										<span><?php echo $row["departure_date"] . " " . $row["departure_time"]; ?></span>
@@ -194,8 +171,11 @@
 
 								<span class="gate">FLIGHT N&deg;<br>
 									<span><?php echo $row["flight_number"]; ?></span>
-									<?php echo '<a class="btn-2" href="editlistings.php?id=' . $row["id"] . '">Edit Ticket</a>' ?>
+									
 								</span>
+                                <span class="price plane">
+                                    <?php echo '<a class="btn-3" href="addbooking.php?id=' . $row["id"] . '">Book Now</a>' ?>
+                                </span>
 							</div>
 						</div>
 					</div>
@@ -228,58 +208,6 @@
 	mysqli_close($db_connection);
 ?>
 
-<style>
-	.pagination {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		margin-top: 50px;
-	}
-
-	.pagination a,
-	.pagination span {
-		padding: 10px 20px;
-		margin: 0 10px;
-		border: 1px solid #ccc;
-		border-radius: 5px;
-		font-size: 16px;
-		text-align: center;
-		color: #555;
-		text-decoration: none;
-	}
-
-	.pagination a:hover {
-		background-color: #ccc;
-	}
-
-	.pagination .current {
-		background-color: #007bff;
-		color: #fff;
-	}
-
-	.pagination .ellipsis {
-		padding: 10px;
-		margin: 0 10px;
-		border: none;
-		background-color: transparent;
-		color: #555;
-		font-size: 16px;
-		cursor: default;
-	}
-
-	@media only screen and (max-width: 768px) {
-		.pagination {
-			flex-direction: column;
-		}
-
-		.pagination a,
-		.pagination span,
-		.pagination .ellipsis {
-			margin: 10px 0;
-		}
-	}
-</style>
-       
 
 
 

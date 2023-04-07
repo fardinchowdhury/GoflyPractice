@@ -13,21 +13,21 @@
     <title>Login</title>
 </head>
 <body>
-    <nav>
-        <div class="logo">
-            <h4><a href="landing2.html">Gofly</a></h4>
-        </div>
-        <ul class="nav-links">
-            <li><a href="#">Reviews</a></li>
-            <li><a href="#">Contact Us</a></li>
-            <li><a href="signup.php">Register</a></li>
-        </ul>
-        <div class="burger">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
-        </div>
-    </nav>
+<?php 
+    // Check the session status
+    $status = session_status();
+
+    if ($status === PHP_SESSION_ACTIVE) {
+        // Session is active
+        include_once 'navbar.php';
+    } else {
+        session_start();
+        // Session is not active
+        include_once 'navbar.php';
+
+    }
+        
+    ?>
 
     <div class="container">
         <form action="https://formspree.io/f/mlekpwqw" method="post" class="form color-g">
@@ -42,7 +42,8 @@
             <img src="photos/bgpic1.png" alt="">
         </div>
     </div>
-</script>
+    <script src="https://kit.fontawesome.com/fe66f9ddbe.js" crossorigin="anonymous"></script>
+    <script src="land.js"></script>
     
 </body>
 </html>
