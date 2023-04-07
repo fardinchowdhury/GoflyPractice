@@ -1,3 +1,61 @@
+<?php
+session_start();
+require_once ("config.php");
+
+// Check if the user is logged in.
+// If not, redirect them to the login page.
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit();
+}
+
+$username = $_SESSION['username'];
+
+// Retrieve the records from the user_booking table based on the current user's username
+$sql = "SELECT * FROM user_booking WHERE user='$username'";
+$result = $db_connection->query($sql);
+
+// Create an empty array to store ticket IDs
+$ticket_ids = array();
+
+// Loop through the records and add the ticket IDs to the array
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $ticket_ids[] = $row["ticket_id"];
+    }
+} else {
+    echo "<p>No tickets found for $username</p>";
+}
+
+// Loop through the ticket IDs and retrieve the corresponding flight data
+foreach ($ticket_ids as $ticket_id) {
+    // Retrieve the flight data based on the ticket ID
+    $sql = "SELECT * FROM flight_listings WHERE id='$ticket_id'";
+    $result = $db_connection->query($sql);
+
+    // Display the flight data
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        echo "<p>Airline: " . $row["airline"] . "</p>";
+        echo "<p>Flight Number: " . $row["flight_number"] . "</p>";
+        echo "<p>Departure: " . $row["departure"] . "</p>";
+        echo "<p>Arrival: " . $row["arrival"] . "</p>";
+        echo "<p>Departure Date: " . $row["departure_date"] . "</p>";
+        echo "<p>Departure Time: " . $row["departure_time"] . "</p>";
+        echo "<p>Duration: " . $row["duration"] . "</p>";
+        echo "<p>Price: " . $row["price"] . "</p>";
+        echo "<p>Seats: " . $row["seats"] . "</p>";
+        echo "<p>Class: " . $row["class"] . "</p>";
+    } else {
+        echo "<p>No flight data found for ticket ID $ticket_id</p>";
+    }
+}
+
+$db_connection->close();
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

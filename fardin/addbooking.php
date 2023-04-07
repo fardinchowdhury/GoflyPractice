@@ -101,19 +101,18 @@ mysqli_close($db_connection);
         </table>
       </div>
       <div class="payment-info">
-        <h2 style="padding-bottom:20px;">Payment Info</h2>
-        <form>
-        <label>Name on Credit Card</label>
-        <input type="text" name="firstname" value="John Doe">
-        <label>Credit Card Number</label>
-        <input type="text" name="lastname" value="XXX-XXX-XXXX">
-        <br><br>
-        
-        <a class="btn btn-1" name="book_securely" href="mybooking.php">Book Securly</a>
-      </form>
-      </div>
-    </div>
-  </div>
+  <h2 style="padding-bottom:20px;">Payment Info</h2>
+  <form method="post" action="processbooking.php?ticket_id=<?php echo $ticket_id; ?>">
+    <input type="hidden" name="username" value="<?php echo $_SESSION['username']; ?>">
+    <label>Name on Credit Card</label>
+    <input type="text" name="card_name" required>
+    <label>Credit Card Number</label>
+    <input type="text" name="card_number" required>
+    <br><br>
+    <button class="btn btn-1" type="submit" name="book_securely">Book Securely</button>
+  </form>
+</div>
+
 
 
     </div>
