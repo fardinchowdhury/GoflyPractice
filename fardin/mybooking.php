@@ -32,28 +32,7 @@ foreach ($ticket_ids as $ticket_id) {
     // Retrieve the flight data based on the ticket ID
     $sql = "SELECT * FROM flight_listings WHERE id='$ticket_id'";
     $result = $db_connection->query($sql);
-
-    // Display the flight data
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        echo "<p>Airline: " . $row["airline"] . "</p>";
-        echo "<p>Flight Number: " . $row["flight_number"] . "</p>";
-        echo "<p>Departure: " . $row["departure"] . "</p>";
-        echo "<p>Arrival: " . $row["arrival"] . "</p>";
-        echo "<p>Departure Date: " . $row["departure_date"] . "</p>";
-        echo "<p>Departure Time: " . $row["departure_time"] . "</p>";
-        echo "<p>Duration: " . $row["duration"] . "</p>";
-        echo "<p>Price: " . $row["price"] . "</p>";
-        echo "<p>Seats: " . $row["seats"] . "</p>";
-        echo "<p>Class: " . $row["class"] . "</p>";
-    } else {
-        echo "<p>No flight data found for ticket ID $ticket_id</p>";
-    }
-}
-
-$db_connection->close();
 ?>
-
 
 
 <!DOCTYPE html>
@@ -102,7 +81,11 @@ $db_connection->close();
     
     <div class="container2">
     
-
+    <?php
+    // Display the flight data
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        ?>
 <div class="ticket">
 	<div class="left">
 		<div class="image">
@@ -113,7 +96,7 @@ $db_connection->close();
 			</p>
 			<div class="ticket-number">
 				<p>
-					#20030220
+                <?php  echo $row["flight_number"];?>
 				</p>
 			</div>
 		</div>
@@ -124,8 +107,9 @@ $db_connection->close();
 				<span>2021</span>
 			</p>
 			<div class="show-name">
+            <?php  echo  $row["airline"];?>
 				
-				<h2>JFK  
+				<h2>  <?php  echo $row["departure"];?>
                 <span><svg
                                 clip-rule="evenodd"
                                 fill-rule="evenodd"
@@ -151,13 +135,13 @@ $db_connection->close();
                                         stroke-linejoin="round"
                                         stroke-width="10"/>
                                 </g>
-                            </svg> DAC</h2>
+                            </svg> <?php  echo $row["arrival"];?></h2>
                             
                         </span>
 			</div>
 			<div class="time">
-				<p>8:00 PM <span>TO</span> 11:00 PM</p>
-				<p>DOORS <span>@</span> 7:00 PM</p>
+				<p><?php  echo $row["departure_date"];?></</p>
+				<p><?php  echo $row["departure_time"];?></p>
 			</div>
 
 		</div>
@@ -170,6 +154,25 @@ $db_connection->close();
 		</div>
 	</div>
 </div>
+       <?php  echo "<p>Airline: " . $row["airline"] . "</p>";?>
+        <!-- echo "<p>Flight Number: " . $row["flight_number"] . "</p>";
+        echo "<p>Departure: " . $row["departure"] . "</p>";
+        echo "<p>Arrival: " . $row["arrival"] . "</p>";
+        echo "<p>Departure Date: " . $row["departure_date"] . "</p>";
+        echo "<p>Departure Time: " . $row["departure_time"] . "</p>";
+        echo "<p>Duration: " . $row["duration"] . "</p>";
+        echo "<p>Price: " . $row["price"] . "</p>";
+        echo "<p>Seats: " . $row["seats"] . "</p>";
+        echo "<p>Class: " . $row["class"] . "</p>"; -->
+    <?php
+    } else {
+        echo "<p>No flight data found for ticket ID $ticket_id</p>";
+    }
+    }
+
+    $db_connection->close();
+    ?>
+
     </div>
 
     <script src="https://kit.fontawesome.com/fe66f9ddbe.js" crossorigin="anonymous"></script>
