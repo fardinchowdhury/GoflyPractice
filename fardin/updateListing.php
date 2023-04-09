@@ -1,12 +1,19 @@
-<?php 
+<?php
 session_start();
-require_once('config.php');
 
-//Check if the user is logged in.
-if (!isset($_SESSION['username'])) {
+if(!isset($_SESSION['username'])){
     header('Location: login.php');
     exit();
+
 }
+
+// Check if the user is logged in and has the user type "admin"
+if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'admin') {
+    // The user is not an admin, so redirect to regular users' landing page.
+    header('Location: displaylist.php');
+    exit();
+}
+
 
 //Check if the form has been submitted
 if($_SERVER["REQUEST_METHOD"] == "POST") {
