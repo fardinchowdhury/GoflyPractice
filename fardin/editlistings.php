@@ -1,14 +1,21 @@
 <?php
+require_once("config.php");
 session_start();
-require_once ("config.php");
 
+if(!isset($_SESSION['username'])){
+    header('Location: login.php');
+    exit();
 
-// Check if the user is logged in.
-// If not, redirect them to the login page.
-if (!isset($_SESSION['username'])) {
-    header("Location: login.php");
+}
+
+// Check if the user is logged in and has the user type "admin"
+if(!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'admin') {
+    // The user is not an admin, so redirect to regular users' landing page.
+    header('Location: displaylist.php');
     exit();
 }
+
+
 
 //Get the ticket ID from the query parameter.
 $ticket_id = $_GET['id'];
@@ -165,7 +172,11 @@ mysqli_close($db_connection);
 
 
             <input type="submit" value="Save Listing" id="submit">
+            <button type="button" calss = 'btn-3' onclick="window.location.href='admin_displaylist.php'">Cancel</button>
+            
         </form>
+        
+        
     </div> 
 
 
